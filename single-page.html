@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image" href="./assets/favico.jpg" />
+    <title>Butwal Today - OTT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body class="min-h-screen">
+    <!-- MOBILE BACKDROP -->
+    <div
+      id="mobileBackdrop"
+      class="fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition md:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <!-- side menu -->
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 bottom-0 z-50 bg-[var(--bg-color)] responsive-border overflow-visible transition-[width,transform] duration-300 ease-out w-[86px] md:translate-x-0 -translate-x-full"
+      data-state="collapsed"
+      aria-label="Sidebar"
+    >
+      <!-- Chevron toggle  -->
+      <button
+        id="sidebarToggleBtn"
+        class="hidden md:grid absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 h-9 w-9 rounded-full bg-white border border-black/10 place-items-center text-[var(--primary)]"
+        type="button"
+        aria-label="Toggle sidebar"
+      >
+        <i id="sidebarToggleIcon" class="ph-bold ph-caret-right text-xl"></i>
+      </button>
+
+      <div class="h-full flex flex-col">
+        <div>
+          <!-- logos + mobile close -->
+          <div class="p-3 flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-2">
+              <!-- logo for collapsed -->
+              <img
+                id="logoCollapsed"
+                src="./assets/favico.jpg"
+                alt="Butwal Today"
+                class="h-14 w-14 rounded-xl object-cover shadow"
+              />
+
+              <!-- logo for expanded -->
+              <img
+                id="logoExpanded"
+                src="./assets/logo.png"
+                alt="Butwal Today"
+                class="hidden h-14 w-auto object-contain"
+              />
+            </a>
+
+            <!-- mobile close -->
+            <button
+              id="mobileCloseBtn"
+              class="md:hidden h-7 w-9 rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)] hover:bg-[var(--primary-soft2)] transition grid place-items-center"
+              type="button"
+              aria-label="Close menu"
+            >
+              <i class="ph-bold ph-x text-sm"></i>
+            </button>
+          </div>
+
+          <!-- nav -->
+          <nav class="mt-2 px-2 flex flex-col gap-4">
+            <!-- HOME -->
+            <a
+              href="index.html"
+              data-nav-link
+              class="sidebar-link flex items-center gap-4 px-3 h-12"
+            >
+              <span
+                class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+              >
+                <i class="ph-bold ph-house text-2xl"></i>
+              </span>
+
+              <span class="sidebar-expanded-only nav">गृहपृष्ठ</span>
+            </a>
+
+            <!-- random -->
+            <a
+              href="/random.html"
+              data-nav-link
+              class="sidebar-link flex items-center gap-4 px-3 h-12"
+            >
+              <span
+                class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+              >
+                <i class="ph-bold ph-newspaper text-2xl"></i>
+              </span>
+
+              <span class="sidebar-expanded-only nav">समाचार</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- BOTTOM SECTION-->
+        <div class="mt-auto px-2 pb-3 flex flex-col gap-4">
+          <!-- dark mode btn -->
+          <button
+            id="themeToggle"
+            type="button"
+            class="sidebar-link w-full flex items-center gap-4 px-3 h-12"
+            aria-label="Toggle dark mode"
+          >
+            <span
+              class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+            >
+              <i id="themeIcon" class="ph-bold ph-moon text-2xl"></i>
+            </span>
+
+            <span id="themeText" class="sidebar-expanded-only nav">Dark</span>
+          </button>
+
+          <!-- copyright -->
+          <div class="text-sm text-center footer-text tracking-wide">
+            <span class="sidebar-expanded-only">
+              © 2026 <span class="font-medium">butwaltoday.com</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="absolute right-4 top-2">
+      <button
+        id="mobileHamburger"
+        class="md:hidden h-11 w-11 rounded-full px-2 bg-black/40 border border-white/20 text-white grid place-items-center hover:bg-white/15 transition"
+        type="button"
+        aria-label="Open menu"
+      >
+        <i class="ph-bold ph-list text-2xl"></i>
+      </button>
+    </div>
+    <!-- MAIN WRAP -->
+    <main
+      id="mainWrap"
+      class="transition-[margin-left] duration-300 ml-0 md:ml-[86px]"
+    >
+      <!-- content  -->
+      <section class="p-4 md:p-10">
+        <div class="max-w-7xl mx-auto rounded-lg title-box p-4">
+          <!-- HEADER -->
+          <header class="space-y-4">
+            <div class="px-4 md:px-10 pt-4">
+              <h1 class="title-heading">
+                निर्वाचन विशेष । देश खरानी भएको छ, नयाँ नेपाल बनाउनु छ
+              </h1>
+            </div>
+            <div class="flex items-center gap-4 px-4 for-border md:px-10 pb-4">
+              <div
+                class="flex items-center gap-2 text-sm time whitespace-nowrap"
+              >
+                <img
+                  src="./assets/bt-icon.jpg"
+                  class="rounded-full h-8 w-8 border border-[#1c7ce5]"
+                  alt=""
+                />
+                <span class="mt-1 title-small"> 23 घण्टा अगाडि </span>
+              </div>
+
+              <div
+                class="flex items-center gap-2 text-sm time whitespace-nowrap"
+              >
+                <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                <span
+                  class="mt-1 font-medium truncate cursor-default leading-none"
+                >
+                  23 घण्टा अगाडि
+                </span>
+              </div>
+            </div>
+          </header>
+
+          <!-- content -->
+          <div class="p-4 md:p-10">
+            <div class="space-y-6 max-w-6xl">
+              <!-- Video -->
+              <div class="rounded-2xl overflow-hidden bg-black">
+                <div class="aspect-video w-full">
+                  <iframe
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/o6zDU3iSJQA"
+                    title="Video"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+
+              <p class="single-par">
+                बाँकेका सहायक प्रमुख जिल्ला अधिकारी तथा अनुगमन समितिका अधिकृत
+                पूृर्णबहादुर खत्रीले विद्यालयमा कार्यक्रम गरेको, पालिका
+                वडाध्यक्षले पालिकामा प्रचारप्रसार गरेको र पालिकाको डोजर तथा टिपर
+                प्रयोग गरेर सडक ग्राभेल गरेकोलगायत उजुरी आएको बताए । उनले
+                आचारसंहिताविपरीत सबै काम बन्द गरिएको उल्लेख गर्दै सम्बन्धितलाई
+                सचेत बनाइएको जानकारी दिए ।
+                <br />
+                <br />
+                “हामीले स्थलगत अनुगमन पनि गर्छौं, तर अहिले सूचना र जानकारी आएका
+                आधारमा हामीले काम गरिरहेका छौँ”, निर्वाचन आचारसंहिता अनुगमन
+                समितिका अधिकृत खत्रीले भने । आसन्न प्रतिनिधिसभा सदस्य
+                निर्वाचनलाई स्वतन्त्र, निष्पक्ष भयरिहत वातावरणमा सम्पन्न गराउने
+                उदेश्यले निर्वाचन आचारसंहिता पालना गर्न अनुगमन समितिले जिल्लामा
+                आग्रह गरेको छ । <br />
+                <br />
+                निर्वाचन आयोगले बाँकेका सहायक प्रमुख जिल्ला अधिकारी खत्री र कोष
+                तथा लेखा नियन्त्रण कार्यालय प्रमुख सर्वोदय उपाध्यायलाई अनुगमन
+                अधिकृतका रुपमा तोकेको छ । अनुगमन समितिका अनुसार निर्वाचन
+                प्रचारप्रसारको काम आगामी फागुन ४ देखि १८ गतेसम्म मात्रै गर्न
+                पाउने कानुनी प्रावधान रहेको छ । निर्वाचन आयोगद्वारा जारी भएको
+                निर्वाचन आचारसंहिता माघ ४ गतेदेखि नै लागू भएको छ । रासस
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-bg shadow-md m-4 md:m-10 rounded-xl">
+        <!-- top row -->
+        <div
+          class="p-4 md:px-10 md:py-6 flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <!-- links -->
+          <div
+            class="flex items-center gap-4 text-md tracking-wide text-[#333333]"
+          >
+            <a href="#" class="footer-text transition-colors duration-200"
+              >गृहपृष्ठ</a
+            >
+            <span class="footer-text transition-colors duration-200">|</span>
+            <a href="#" class="footer-text transition-colors duration-200"
+              >हाम्रो बारे</a
+            >
+            <span class="footer-text transition-colors duration-200">|</span>
+            <a href="#" class="footer-text transition-colors duration-200"
+              >गोपनियता नीति</a
+            >
+          </div>
+
+          <!-- social -->
+          <div class="flex items-center gap-2">
+            <span class="text-md footer-text mt-2">Follow on</span>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="YouTube"
+            >
+              <i class="fa-brands fa-youtube text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="X"
+            >
+              <i class="fa-brands fa-x-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- divider -->
+        <div class="max-w-screen-2xl mx-auto border-t border-gray-400"></div>
+
+        <!-- middle info -->
+        <div class="p-4 md:px-10 md:py-6 text-md text-[#333333]">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div>
+              <p>
+                सूचना विभाग दर्ता नं. -
+                <span class="font-semibold tracking-wide">४६५६</span>
+              </p>
+              <p>
+                प्रेस काउन्सिल दर्ता नं. -
+                <span class="font-semibold tracking-wide">१२६७</span>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                फोन -
+                <span class="font-semibold tracking-wide"
+                  >०७१-५५४६४०, ५५४६४२</span
+                >
+              </p>
+              <p>
+                इमेल -
+                <a
+                  href="mailto:ebutwaltoday@gmail.com"
+                  class="font-semibold tracking-wide hover:underline"
+                >
+                  ebutwaltoday@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                ठेगाना -
+                <span class="font-semibold tracking-wide">
+                  बुटवल–६, रुपन्देही
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- bottom row -->
+        <div class="footer-border">
+          <p
+            class="p-4 md:px-8 text-sm footer-text transition-colors duration-200"
+          >
+            © २०२६ butwaltoday.com — All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- VIDEO MODAL  -->
+    <div id="videoModal" class="fixed inset-0 z-[70] hidden" aria-hidden="true">
+      <div id="modalOverlay" class="absolute inset-0 bg-black/70"></div>
+
+      <div class="relative h-full w-full grid place-items-center p-4">
+        <div
+          class="relative w-full max-w-7xl bg-black rounded-2xl overflow-hidden border border-white/15"
+        >
+          <button
+            id="modalClose"
+            class="absolute top-3 right-3 z-10 h-10 w-10 rounded-full bg-white/10 text-white grid place-items-center hover:bg-white/15 transition"
+            aria-label="Close video"
+            type="button"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+
+          <div class="aspect-video w-full">
+            <iframe
+              id="modalIframe"
+              class="w-full h-full"
+              data-src="https://www.youtube.com/embed/o6zDU3iSJQA?autoplay=1&mute=0&rel=0&modestbranding=1"
+              src=""
+              title="Watch Video"
+              frameborder="0"
+              allow="autoplay; fullscreen; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/menu.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/video.js"></script>
+  </body>
+</html>

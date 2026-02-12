@@ -1,0 +1,2088 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image" href="./assets/favico.jpg" />
+    <title>Butwal Today - OTT</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body class="min-h-screen">
+    <!-- MOBILE BACKDROP -->
+    <div
+      id="mobileBackdrop"
+      class="fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition md:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <!-- side menu -->
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 bottom-0 z-50 bg-[var(--bg-color)] responsive-border overflow-visible transition-[width,transform] duration-300 ease-out w-[86px] md:translate-x-0 -translate-x-full"
+      data-state="collapsed"
+      aria-label="Sidebar"
+    >
+      <!-- Chevron toggle  -->
+      <button
+        id="sidebarToggleBtn"
+        class="hidden md:grid absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 h-9 w-9 rounded-full bg-white border border-black/10 place-items-center text-[var(--primary)]"
+        type="button"
+        aria-label="Toggle sidebar"
+      >
+        <i id="sidebarToggleIcon" class="ph-bold ph-caret-right text-xl"></i>
+      </button>
+
+      <div class="h-full flex flex-col">
+        <div>
+          <!-- logos + mobile close -->
+          <div class="p-3 flex items-center justify-between gap-2">
+            <a href="/index.html" class="flex items-center gap-2">
+              <!-- logo for collapsed -->
+              <img
+                id="logoCollapsed"
+                src="./assets/favico.jpg"
+                alt="Butwal Today"
+                class="h-14 w-14 rounded-xl object-cover shadow"
+              />
+
+              <!-- logo for expanded -->
+              <img
+                id="logoExpanded"
+                src="./assets/logo.png"
+                alt="Butwal Today"
+                class="hidden h-14 w-auto object-contain"
+              />
+            </a>
+
+            <!-- mobile close -->
+            <button
+              id="mobileCloseBtn"
+              class="md:hidden h-7 w-9 rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)] hover:bg-[var(--primary-soft2)] transition grid place-items-center"
+              type="button"
+              aria-label="Close menu"
+            >
+              <i class="ph-bold ph-x text-sm"></i>
+            </button>
+          </div>
+
+          <!-- nav -->
+          <nav class="mt-2 px-2 flex flex-col gap-4">
+            <!-- HOME -->
+            <a
+              href="index.html"
+              data-nav-link
+              class="sidebar-link flex items-center gap-4 px-3 h-12"
+            >
+              <span
+                class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+              >
+                <i class="ph-bold ph-house text-2xl"></i>
+              </span>
+
+              <span class="sidebar-expanded-only nav">गृहपृष्ठ</span>
+            </a>
+
+            <!-- RANDOM -->
+            <a
+              href="random.html"
+              data-nav-link
+              class="sidebar-link flex items-center gap-4 px-3 h-12"
+            >
+              <span
+                class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+              >
+                <i class="ph-bold ph-newspaper text-2xl"></i>
+              </span>
+
+              <span class="sidebar-expanded-only nav">समाचार</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- BOTTOM SECTION-->
+        <div class="mt-auto px-2 pb-3 flex flex-col gap-4">
+          <!-- dark mode btn -->
+          <button
+            id="themeToggle"
+            type="button"
+            class="sidebar-link w-full flex items-center gap-4 px-3 h-12"
+            aria-label="Toggle dark mode"
+          >
+            <span
+              class="sidebar-icon h-11 w-11 rounded-xl grid place-items-center shrink-0"
+            >
+              <i id="themeIcon" class="ph-bold ph-moon text-2xl"></i>
+            </span>
+
+            <span id="themeText" class="sidebar-expanded-only nav">Dark</span>
+          </button>
+
+          <!-- copyright -->
+          <div class="text-sm text-center footer-text tracking-wide">
+            <span class="sidebar-expanded-only">
+              © 2026 <span class="font-medium">butwaltoday.com</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAP -->
+    <main
+      id="mainWrap"
+      class="transition-[margin-left] duration-300 ml-0 md:ml-[86px]"
+    >
+      <!-- HERO -->
+      <section class="relative w-full h-[60vh] overflow-hidden bg-black">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <iframe
+            class="absolute top-1/2 left-1/2 w-[177.77vh] h-[100vh] -translate-x-1/2 -translate-y-1/2"
+            src="https://www.youtube.com/embed/o6zDU3iSJQA?autoplay=1&mute=1&controls=0&loop=1&playlist=o6zDU3iSJQA&modestbranding=1&rel=0&showinfo=0"
+            title="Background Video"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+          ></iframe>
+
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-black/90 via-black/10 to-black/90"
+          ></div>
+        </div>
+
+        <!-- TOP OVERLAY BAR -->
+        <div class="absolute top-0 left-0 right-0 z-20">
+          <div
+            class="w-full px-4 sm:px-10 py-3 flex items-center justify-between gap-3"
+          >
+            <!-- left: hamburger + search -->
+            <div class="flex items-center gap-3 flex-1">
+              <button
+                id="mobileHamburger"
+                class="md:hidden h-11 w-11 rounded-full px-2 bg-black/40 border border-white/20 text-white grid place-items-center hover:bg-white/15 transition"
+                type="button"
+                aria-label="Open menu"
+              >
+                <i class="ph-bold ph-list text-2xl"></i>
+              </button>
+
+              <div
+                class="flex items-center gap-2 w-full max-w-[520px] bg-white/90 backdrop-blur border border-white/45 rounded-xl px-4 py-3"
+              >
+                <i class="ph-bold ph-magnifying-glass text-black/70"></i>
+                <input
+                  class="mt-1 w-full bg-transparent outline-none text-[16px] text-black placeholder:text-black/50"
+                  type="text"
+                  placeholder="Search news, videos..."
+                  aria-label="Search"
+                />
+              </div>
+            </div>
+
+            <!-- socials right -->
+            <div class="hidden sm:flex items-center gap-2">
+              <a
+                href="#"
+                class="w-11 h-11 rounded-full bg-[var(--primary)] text-white grid place-items-center shadow-[0_10px_25px_rgba(28,124,229,0.22)] hover:brightness-95 transition"
+                aria-label="YouTube"
+              >
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              <a
+                href="#"
+                class="w-11 h-11 rounded-full bg-[var(--primary)] text-white grid place-items-center shadow-[0_10px_25px_rgba(28,124,229,0.22)] hover:brightness-95 transition"
+                aria-label="Facebook"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-11 h-11 rounded-full bg-[var(--primary)] text-white grid place-items-center shadow-[0_10px_25px_rgba(28,124,229,0.22)] hover:brightness-95 transition"
+                aria-label="Instagram"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-11 h-11 rounded-full bg-[var(--primary)] text-white grid place-items-center shadow-[0_10px_25px_rgba(28,124,229,0.22)] hover:brightness-95 transition"
+                aria-label="X"
+              >
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO CONTENT -->
+        <div class="relative z-10 h-full">
+          <div class="w-full h-full px-4 sm:px-10 flex items-end pb-10">
+            <div class="w-full flex items-end justify-between gap-6">
+              <div class="max-w-2xl">
+                <h1 class="title-hero-white">आजको मुख्य भिडियो</h1>
+                <p class="hidden md:grid text-white/90 text-xl">
+                  ताजा अपडेट, विशेष रिपोर्ट र कथा — Butwal Today OTT मा। विशेष
+                  रिपोर्ट र कथा — Butwal Today OTT मा।
+                </p>
+              </div>
+
+              <!--  Watch Now button -->
+              <button
+                type="button"
+                class="group btn"
+                data-watch-now
+                data-video="https://www.youtube.com/embed/o6zDU3iSJQA"
+              >
+                <span
+                  class="watch-icon h-12 w-12 rounded-xl bg-white/15 border border-[#1C7CE5] grid place-items-center"
+                >
+                  <i class="ph-fill ph-play text-2xl"></i>
+                </span>
+                <span class="text-left">
+                  <span class="block font-semibold text-lg leading-5"
+                    >अहिले हेर्नुहोस्</span
+                  >
+                  <span class="block"> भिडियो प्ले गर्नुहोस्</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- playlist -->
+      <section class="p-4 md:p-10">
+        <div class="space-y-4">
+          <!-- Tabs -->
+          <div class="tab-pills-wrap" data-tabs>
+            <button
+              class="tab-pill is-active is-playlists"
+              data-tab="playlists"
+              aria-selected="true"
+            >
+              All
+            </button>
+            <button class="tab-pill" data-tab="election" aria-selected="false">
+              Election
+            </button>
+            <button class="tab-pill" data-tab="health" aria-selected="false">
+              Health Tips
+            </button>
+            <button class="tab-pill" data-tab="nepal" aria-selected="false">
+              Nepal Update
+            </button>
+            <button class="tab-pill" data-tab="visual" aria-selected="false">
+              Visual Arts
+            </button>
+          </div>
+
+          <!-- Panels -->
+          <div class="space-y-6">
+            <!-- Playlists -->
+            <div data-panel="playlists" class="tab-panel">
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Video Card 1-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-2.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <!-- Video Card 2-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/news-1.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <!-- Video Card 3-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-2.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <!-- Video Card 4-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/news-1.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <!-- Video Card 5-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-2.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <!-- Video Card 6-->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-1.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Election -->
+            <div data-panel="election" class="tab-panel hidden">
+              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Video Card -->
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-2.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <article class="group space-y-2">
+                  <button
+                    type="button"
+                    class="w-full text-left"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                    aria-label="Play video"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="./assets/suchana-2.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span
+                        class="absolute inset-0 grid place-items-center pointer-events-none"
+                      >
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </button>
+                  <div>
+                    <a
+                      href="./single-page.html"
+                      class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                    >
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </a>
+
+                    <div
+                      class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                    >
+                      <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                      <span
+                        class="mt-1 font-medium truncate cursor-default leading-none"
+                      >
+                        23 घण्टा अगाडि
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Health -->
+            <div data-panel="health" class="tab-panel hidden">
+              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Video Card -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+                <!-- Video Card 2 -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- Nepal -->
+            <div data-panel="nepal" class="tab-panel hidden">
+              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Video Card -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+                <!-- Video Card 2 -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+
+            <!-- Visual -->
+            <div data-panel="visual" class="tab-panel hidden">
+              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- Video Card -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+                <!-- Video Card 2 -->
+                <article class="group">
+                  <button
+                    type="button"
+                    class="w-full text-left space-y-3"
+                    data-video-trigger
+                    data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                  >
+                    <div
+                      class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                    >
+                      <img
+                        src="https://i.ytimg.com/vi/Scxs7L0vhZ4/hqdefault.jpg"
+                        alt="Video thumbnail"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+
+                      <span class="absolute inset-0 grid place-items-center">
+                        <span
+                          class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                        >
+                          <i class="fa-solid fa-play text-lg pl-1"></i>
+                        </span>
+                      </span>
+                    </div>
+
+                    <h3 class="title-small">
+                      निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                    </h3>
+
+                    <div class="flex items-center gap-2 text-sm text-slate-600">
+                      <div class="flex items-center gap-2 min-w-0">
+                        <img
+                          src="./assets/bt-icon.jpg"
+                          alt="Author"
+                          class="h-8 w-8 rounded-full object-cover border border-[#1c7ce5]"
+                        />
+                        <span class="font-medium text-slate-800 truncate"
+                          >Butwal Today TV</span
+                        >
+                      </div>
+                      <span class="text-slate-300">•</span>
+                      <span class="whitespace-nowrap">1 year ago</span>
+                    </div>
+                  </button>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- multimeida -->
+      <section class="p-4 md:p-10">
+        <div class="space-y-4">
+          <!-- header -->
+          <div class="flex items-center gap-5">
+            <h2 class="title-heading">मल्टिमिडिया</h2>
+
+            <div class="flex-1 h-[3px] heading-hr rounded-full"></div>
+
+            <a
+              href="#"
+              class="w-9 h-9 rounded-full bg-[#1C7CE5]/10 text-[#1C7CE5] grid place-items-center group"
+              aria-label="View more"
+            >
+              <i
+                class="ph-bold ph-arrow-up-right text-lg group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition"
+              ></i>
+            </a>
+          </div>
+
+          <!-- content -->
+          <div class="rounded-xl bg-[#161A25] p-4 md:p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+              <!-- LEFT: main video -->
+              <div class="lg:col-span-8 space-y-4">
+                <div
+                  class="rounded-xl overflow-hidden bg-black border-[1px] border-[var(--border-color)]"
+                >
+                  <div class="aspect-video w-full">
+                    <iframe
+                      id="mmMainIframe"
+                      class="w-full h-full"
+                      src="https://www.youtube.com/embed/o6zDU3iSJQA?rel=0&modestbranding=1"
+                      title="Multimedia Video"
+                      frameborder="0"
+                      allow="
+                        autoplay;
+                        encrypted-media;
+                        fullscreen;
+                        picture-in-picture;
+                      "
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+
+                <h3 id="mmMainTitle" class="title-medium-white">
+                  Today news | nepali news | aaja ka mukhya samachar <br />
+                  | 27 Magh 2082 | बुटवल टुडे समाचार #news
+                </h3>
+              </div>
+
+              <!-- RIGHT: playlist -->
+              <aside class="lg:col-span-4">
+                <div
+                  class="rounded-xl border border-[var(--border-color)] p-3 md:p-4"
+                >
+                  <div id="mmPlaylist" class="mm-playlist space-y-2">
+                    <!-- item  -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | 27 Magh 2082 | बुटवल टुडे
+                        समाचार #news
+                      </span>
+                    </button>
+
+                    <!-- item  -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | 27 Magh 2082 | बुटवल टुडे
+                        समाचार #news
+                      </span>
+                    </button>
+                    <!-- item  -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | 27 Magh 2082 | बुटवल टुडे
+                        समाचार #news
+                      </span>
+                    </button>
+                    <!-- item  -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | 27 Magh 2082 | बुटवल टुडे
+                        समाचार #news
+                      </span>
+                    </button>
+                    <!-- item  -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | 27 Magh 2082 | बुटवल टुडे
+                        समाचार #news
+                      </span>
+                    </button>
+                    <!-- item -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | aaja ka mukhya samachar | 27
+                        Magh 2082 | बुटवल टुडे समाचार #news
+                      </span>
+                    </button>
+
+                    <!-- item -->
+                    <button
+                      type="button"
+                      class="mm-item w-full text-left flex gap-4 items-start p-2"
+                      data-mm-video="o6zDU3iSJQA"
+                      data-mm-title="Today news | nepali news | aaja ka mukhya samachar | 27 Magh 2082 | बुटवल टुडे समाचार #news"
+                      aria-current="true"
+                    >
+                      <div class="img-small">
+                        <img
+                          src="https://i.ytimg.com/vi/o6zDU3iSJQA/hqdefault.jpg"
+                          alt=""
+                          class=""
+                        />
+                      </div>
+
+                      <span class="mm-title">
+                        Today news | nepali news | aaja ka mukhya samachar
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- section 4 -->
+      <section class="p-4 md:p-10">
+        <div class="space-y-4">
+          <!-- header -->
+          <div class="flex items-center gap-5">
+            <h2 class="title-heading">चुनाव</h2>
+
+            <div class="flex-1 h-[3px] heading-hr rounded-full"></div>
+
+            <a
+              href="#"
+              class="w-9 h-9 rounded-full bg-[#1C7CE5]/10 text-[#1C7CE5] grid place-items-center group"
+              aria-label="View more"
+            >
+              <i
+                class="ph-bold ph-arrow-up-right text-lg group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition"
+              ></i>
+            </a>
+          </div>
+          <!-- content  -->
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- Video Card 1-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/news-1.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+
+                <div
+                  class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                >
+                  <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                  <span
+                    class="mt-1 font-medium truncate cursor-default leading-none"
+                  >
+                    23 घण्टा अगाडि
+                  </span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Video Card 2-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/suchana-2.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+
+                <div
+                  class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                >
+                  <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                  <span
+                    class="mt-1 font-medium truncate cursor-default leading-none"
+                  >
+                    23 घण्टा अगाडि
+                  </span>
+                </div>
+              </div>
+            </article>
+            <!-- Video Card 3-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/suchana-1.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+
+                <div
+                  class="flex items-center gap-2 text-sm time whitespace-nowrap"
+                >
+                  <i class="fa-regular fa-clock shrink-0 leading-none"></i>
+                  <span
+                    class="mt-1 font-medium truncate cursor-default leading-none"
+                  >
+                    23 घण्टा अगाडि
+                  </span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- section 5 -->
+      <section class="p-4 md:p-10 m-4 md:m-10 bg-[#161A25] rounded-xl">
+        <div class="space-y-4">
+          <!-- header -->
+          <div class="flex items-center gap-5">
+            <h2 class="title-heading-white">सूचना प्रविधि</h2>
+            <div class="flex-1 h-[3px] heading-hr rounded-full"></div>
+            <a
+              href="#"
+              class="w-9 h-9 rounded-full bg-[#1C7CE5]/10 text-[#1C7CE5] grid place-items-center group"
+              aria-label="View more"
+            >
+              <i
+                class="ph-bold ph-arrow-up-right text-lg group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition"
+              ></i>
+            </a>
+          </div>
+          <!-- content -->
+          <div class="relative">
+            <!-- LEFT ARROW -->
+            <button
+              type="button"
+              class="hidden md:grid carousel-prev absolute -left-16 top-1/2 -translate-y-1/2 z-10 grid h-14 w-14 place-items-center rounded-full bg-[#dfeffd] text-[#1c7ce5] hover:bg-[#dfeffd] transition group"
+              aria-label="Previous"
+            >
+              <i
+                class="fa-solid fa-arrow-left text-2xl group-hover:-translate-x-1 transition"
+              ></i>
+            </button>
+
+            <!-- RIGHT ARROW -->
+            <button
+              type="button"
+              class="hidden md:grid carousel-next absolute -right-16 top-1/2 -translate-y-1/2 z-10 grid h-14 w-14 place-items-center rounded-full bg-[#dfeffd] text-[#1c7ce5] hover:bg-[#dfeffd] transition group"
+              aria-label="Next"
+            >
+              <i
+                class="fa-solid fa-arrow-right text-2xl group-hover:translate-x-1 transition"
+              ></i>
+            </button>
+
+            <!-- SCROLLER -->
+            <div
+              class="carousel-track flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-14 [scrollbar-width:none] [-ms-overflow-style:none]"
+            >
+              <!-- Card 1 -->
+              <article
+                class="group snap-start shrink-0 w-[110%] sm:w-[48%] md:w-[32%] lg:w-[24%]"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left"
+                  data-video-trigger
+                  data-video-id="Scxs7L0vhZ4"
+                >
+                  <div class="relative rounded-xl overflow-hidden">
+                    <img
+                      src="./assets/suchana-2.jpg"
+                      alt=""
+                      class="h-[460px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"
+                    ></div>
+
+                    <span class="absolute inset-0 grid place-items-center">
+                      <span
+                        class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                      >
+                        <i class="fa-solid fa-play text-lg pl-1"></i>
+                      </span>
+                    </span>
+
+                    <div class="absolute inset-x-0 bottom-0 p-4">
+                      <h3 class="title-small-white">
+                        सामाजिक सञ्जाल विधेयक फिर्ता गर्ने निर्णय सर्वसम्मतिले
+                        पारित
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              </article>
+
+              <!-- Card 2 -->
+              <article
+                class="group snap-start shrink-0 w-[110%] sm:w-[48%] md:w-[32%] lg:w-[24%]"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left"
+                  data-video-trigger
+                  data-video-id="ysz5S6PUM-U"
+                >
+                  <div class="relative rounded-xl overflow-hidden">
+                    <img
+                      src="./assets/suchana-1.jpg"
+                      alt=""
+                      class="h-[460px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"
+                    ></div>
+
+                    <span class="absolute inset-0 grid place-items-center">
+                      <span
+                        class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                      >
+                        <i class="fa-solid fa-play text-lg pl-1"></i>
+                      </span>
+                    </span>
+
+                    <div class="absolute inset-x-0 bottom-0 p-4">
+                      <h3 class="title-small-white">
+                        सामाजिक सञ्जाल विधेयक फिर्ता गर्ने निर्णय सर्वसम्मतिले
+                        पारित
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              </article>
+
+              <!-- Card 3 -->
+              <article
+                class="group snap-start shrink-0 w-[110%] sm:w-[48%] md:w-[32%] lg:w-[24%]"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left"
+                  data-video-trigger
+                  data-video-id="Scxs7L0vhZ4"
+                >
+                  <div class="relative rounded-xl overflow-hidden">
+                    <img
+                      src="./assets/suchana-2.jpg"
+                      alt=""
+                      class="h-[460px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"
+                    ></div>
+
+                    <span class="absolute inset-0 grid place-items-center">
+                      <span
+                        class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                      >
+                        <i class="fa-solid fa-play text-lg pl-1"></i>
+                      </span>
+                    </span>
+
+                    <div class="absolute inset-x-0 bottom-0 p-4">
+                      <h3 class="title-small-white">
+                        सामाजिक सञ्जाल विधेयक फिर्ता गर्ने निर्णय सर्वसम्मतिले
+                        पारित
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              </article>
+
+              <!-- Card 4 -->
+              <article
+                class="group snap-start shrink-0 w-[110%] sm:w-[48%] md:w-[32%] lg:w-[24%]"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left"
+                  data-video-trigger
+                  data-video-id="dQw4w9WgXcQ"
+                >
+                  <div class="relative rounded-xl overflow-hidden">
+                    <img
+                      src="./assets/suchana-1.jpg"
+                      alt=""
+                      class="h-[460px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"
+                    ></div>
+
+                    <span class="absolute inset-0 grid place-items-center">
+                      <span
+                        class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                      >
+                        <i class="fa-solid fa-play text-lg pl-1"></i>
+                      </span>
+                    </span>
+
+                    <div class="absolute inset-x-0 bottom-0 p-4">
+                      <h3 class="title-small-white">
+                        सामाजिक सञ्जाल विधेयक फिर्ता गर्ने निर्णय सर्वसम्मतिले
+                        पारित
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              </article>
+
+              <!-- card-5 -->
+              <article
+                class="group snap-start shrink-0 w-[110%] sm:w-[48%] md:w-[32%] lg:w-[24%]"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left"
+                  data-video-trigger
+                  data-video-id="Scxs7L0vhZ4"
+                >
+                  <div class="relative rounded-xl overflow-hidden">
+                    <img
+                      src="./assets/suchana-2.jpg"
+                      alt=""
+                      class="h-[460px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent"
+                    ></div>
+
+                    <span class="absolute inset-0 grid place-items-center">
+                      <span
+                        class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                      >
+                        <i class="fa-solid fa-play text-lg pl-1"></i>
+                      </span>
+                    </span>
+
+                    <div class="absolute inset-x-0 bottom-0 p-4">
+                      <h3 class="title-small-white">
+                        सामाजिक सञ्जाल विधेयक फिर्ता गर्ने निर्णय सर्वसम्मतिले
+                        पारित
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- section 6 -->
+      <section class="p-4 md:p-10">
+        <div class="space-y-4">
+          <!-- header -->
+          <div class="flex items-center gap-5">
+            <h2 class="title-heading">खेलकुद</h2>
+
+            <div class="flex-1 h-[3px] heading-hr rounded-full"></div>
+
+            <a
+              href="#"
+              class="w-9 h-9 rounded-full bg-[#1C7CE5]/10 text-[#1C7CE5] grid place-items-center group"
+              aria-label="View more"
+            >
+              <i
+                class="ph-bold ph-arrow-up-right text-lg group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition"
+              ></i>
+            </a>
+          </div>
+          <!-- content  -->
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-5">
+            <!-- Video Card 1-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/news-1.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+            <!-- Video Card 2-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/thumbnail4.jpeg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+            <!-- Video Card 3-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/news-1.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+            <!-- Video Card 4-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/thumbnail4.jpeg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+            <!-- Video Card 5-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/news-1.jpg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+            <!-- Video Card 6-->
+            <article class="group space-y-2">
+              <button
+                type="button"
+                class="w-full text-left"
+                data-video-trigger
+                data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+                aria-label="Play video"
+              >
+                <div
+                  class="relative aspect-video overflow-hidden rounded-xl bg-black/10"
+                >
+                  <img
+                    src="./assets/thumbnail4.jpeg"
+                    alt="Video thumbnail"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+
+                  <span
+                    class="absolute inset-0 grid place-items-center pointer-events-none"
+                  >
+                    <span
+                      class="grid h-12 w-12 place-items-center rounded-full bg-white/70 shadow-sm"
+                    >
+                      <i class="fa-solid fa-play text-lg pl-1"></i>
+                    </span>
+                  </span>
+                </div>
+              </button>
+              <div>
+                <a
+                  href="./single-page.html"
+                  class="relative z-10 block title-small hover:text-[#1C7CE5] transition-colors duration-300 ease-in-out"
+                >
+                  निर्वाचन विशेष । देश खरानी भएको छ,नयाँ नेपाल बनाउनु छ
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer-bg shadow-md m-4 md:m-10 rounded-xl">
+        <!-- top row -->
+        <div
+          class="p-4 md:px-10 md:py-6 flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <!-- links -->
+          <div
+            class="flex items-center gap-4 text-md tracking-wide text-[#333333]"
+          >
+            <a href="#" class="footer-text transition-colors duration-200"
+              >गृहपृष्ठ</a
+            >
+            <span class="footer-text transition-colors duration-200">|</span>
+            <a href="#" class="footer-text transition-colors duration-200"
+              >हाम्रो बारे</a
+            >
+            <span class="footer-text transition-colors duration-200">|</span>
+            <a href="#" class="footer-text transition-colors duration-200"
+              >गोपनियता नीति</a
+            >
+          </div>
+
+          <!-- social -->
+          <div class="flex items-center gap-2">
+            <span class="text-md footer-text mt-2">Follow on</span>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="YouTube"
+            >
+              <i class="fa-brands fa-youtube text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-transparent border-[1.5px] border-white shadow text-[var(--nav-color)] grid place-items-center hover:brightness-95 transition"
+              aria-label="X"
+            >
+              <i class="fa-brands fa-x-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- divider -->
+        <div class="max-w-screen-2xl mx-auto border-t border-gray-400"></div>
+
+        <!-- middle info -->
+        <div class="p-4 md:px-10 md:py-6 text-md text-[#333333]">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div>
+              <p>
+                सूचना विभाग दर्ता नं. -
+                <span class="font-semibold tracking-wide">४६५६</span>
+              </p>
+              <p>
+                प्रेस काउन्सिल दर्ता नं. -
+                <span class="font-semibold tracking-wide">१२६७</span>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                फोन -
+                <span class="font-semibold tracking-wide"
+                  >०७१-५५४६४०, ५५४६४२</span
+                >
+              </p>
+              <p>
+                इमेल -
+                <a
+                  href="mailto:ebutwaltoday@gmail.com"
+                  class="font-semibold tracking-wide hover:underline"
+                >
+                  ebutwaltoday@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                ठेगाना -
+                <span class="font-semibold tracking-wide">
+                  बुटवल–६, रुपन्देही
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- bottom row -->
+        <div class="footer-border">
+          <p
+            class="p-4 md:px-8 text-sm footer-text transition-colors duration-200"
+          >
+            © २०२६ butwaltoday.com — All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- VIDEO MODAL  -->
+    <div id="videoModal" class="fixed inset-0 z-[70] hidden" aria-hidden="true">
+      <div
+        id="modalOverlay"
+        class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+      ></div>
+
+      <div class="relative h-full w-full grid place-items-center p-4">
+        <div
+          class="relative w-full max-w-7xl bg-black overflow-hidden border border-white/15"
+        >
+          <button
+            id="modalClose"
+            class="absolute top-3 right-3 z-10 h-10 w-10 rounded-full bg-white/10 text-white grid place-items-center hover:bg-white/15 transition"
+            aria-label="Close video"
+            type="button"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+
+          <div class="aspect-video w-full">
+            <iframe
+              id="modalIframe"
+              class="w-full h-full"
+              data-src="https://www.youtube.com/embed/o6zDU3iSJQA?autoplay=1&mute=0&rel=0&modestbranding=1"
+              src=""
+              title="Watch Video"
+              frameborder="0"
+              allow="autoplay; fullscreen; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reels Modal -->
+    <div
+      id="reelsModal"
+      class="fixed inset-0 z-[999] hidden"
+      aria-hidden="true"
+    >
+      <!-- backdrop -->
+      <div
+        class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        data-reels-close
+      ></div>
+
+      <!-- modal content -->
+      <div class="relative h-full w-full flex items-center justify-center p-4">
+        <div class="relative w-full max-w-[420px] md:max-w-[520px]">
+          <!-- Close Button -->
+          <button
+            type="button"
+            class="absolute top-4 right-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur hover:bg-white/25 transition"
+            aria-label="Close"
+            data-reels-close
+          >
+            <i class="ph-bold ph-x text-2xl"></i>
+          </button>
+
+          <!-- video frame  -->
+          <div class="relative w-full aspect-[9/16] overflow-hidden bg-black">
+            <iframe
+              id="reelsFrame"
+              class="absolute inset-0 h-full w-full"
+              src=""
+              title="YouTube video player"
+              frameborder="0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+
+            <!-- prev / next -->
+            <button
+              type="button"
+              class="absolute left-3 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur hover:bg-white/20 transition"
+              aria-label="Previous video"
+              id="reelsPrev"
+            >
+              <i class="ph-bold ph-caret-left text-xl"></i>
+            </button>
+
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur hover:bg-white/20 transition"
+              aria-label="Next video"
+              id="reelsNext"
+            >
+              <i class="ph-bold ph-caret-right text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/menu.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/tabs.js"></script>
+    <script src="./scripts/video.js"></script>
+    <script src="./scripts/reels.js"></script>
+  </body>
+</html>
