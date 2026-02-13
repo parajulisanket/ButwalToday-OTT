@@ -7,6 +7,7 @@
       align-items: center;
       justify-content: center;
       user-select: none;
+      margin-top: 50px;
     }
 
     .bt-pager__btn {
